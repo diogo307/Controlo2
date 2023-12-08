@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const identityRoutes = require('./routes/identities')
 const controlRoutes = require('./routes/controls')
+const mqtt = require('mqtt')
 
 // create express app
 const app = express ()
@@ -13,6 +14,28 @@ app.use((req,res,next)=>{
     console.log(req.path, req.method);
     next();
 })
+
+// MQTT
+var client = mqtt.connect('mqtt://broker.hivemq.com')
+
+client.on('connect', () => {
+    console.log('Connected')
+})
+
+const topic = 'test/msg'
+
+client.on('connect', () => {
+    console.log('Connected')
+    client.subscribe([topic], () => {
+        console.log(`Subscribe to topic '${topic}'`)
+    })
+})
+
+//insert data into database when a message is received 
+client.on('message', async (topic, payload) => {
+    console.log('Received Message:', topic, payload.toString());
+});
+
 
 // routes
 app.use ('/api/identities', identityRoutes)
