@@ -1,5 +1,6 @@
 const Control = require('../models/controlModel');
-const mongoose = require ('mongoose')
+const Identity = require('../models/identityModel');
+const mongoose = require ('mongoose');
 
 // get all controls
 const getControls = async (req,res) => {
@@ -30,6 +31,10 @@ const createControl = async (req,res) => {
     } catch (error) {
         res.status(400).json({error: error.message})
     }
+}
+
+const testControl = async (req,res) => {
+    const {serialNumber } = req.body
 }
 
 module.exports = {
