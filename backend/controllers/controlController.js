@@ -1,43 +1,27 @@
-const Control = require('../models/controlModel');
-const Identity = require('../models/identityModel');
-const mongoose = require ('mongoose');
+const controlServices = require('../services/controlServices');
 
 // get all controls
 const getControls = async (req,res) => {
-    const controls = await Control.find({}).sort({createdAt: -1})
-
-    res.status(200).json(controls)
+    return controlServices.getControls(req,res);
 }
 
 // create a new Control
 const createControl = async (req,res) => {
-    const {dateTime, serialNumber } = req.body
-
-    /*let emptyFields = []
-    if(!serialNumber){
-        emptyFields.push('serialNumber')
+    const control = await controlServices.createControl(req,res);
+    if (control != null){
+        return res.status(200).json(req.body);
     }
-    if(!dateTime){
-        emptyFields.push('dateTime')
-    }
-    if(emptyFields.length>0){
-        return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
-    }*/
-
-    // add doc to db
-    try {
-        const control = await Control.create({serialNumber, dateTime})
-        res.status(200).json(control)
-    } catch (error) {
-        res.status(400).json({error: error.message})
+    else{
+        return res.status(400).json({error: 'Could not create Control instance.'})
     }
 }
 
-const testControl = async (req,res) => {
-    const {serialNumber } = req.body
+const findOneControl = async (req,res) => {
+    return controlServices.findOneControl(req,res);
 }
 
 module.exports = {
     getControls,
-    createControl
+    createControl,
+    findOneControl
 }

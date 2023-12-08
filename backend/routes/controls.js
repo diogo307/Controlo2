@@ -1,7 +1,8 @@
 const express = require ('express');
 
 const { getControls, 
-        createControl 
+        createControl,
+        validateIdentity, 
 } = require('../controllers/controlController');
 
 const router = express.Router();
@@ -11,5 +12,6 @@ router.get('/', getControls)
 
 // create a new control
 router.post('/', createControl)
+
 
 module.exports = router
