@@ -33,11 +33,7 @@ header a {
 }
 
 /* Controls Dashboard */
-.control {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
-}
+
 .control-details {
   background: #fff;
   border-radius: 4px;
@@ -68,10 +64,11 @@ header a {
 }
 
 /* Identities Dashboard */
-.identity {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
+.identities {
+  display: flex;                       /* establish flex container */
+  flex-wrap: wrap;                     /* enable flex items to wrap */
+  justify-content: space-around;
+
 }
 .identity-details {
   background: #fff;
@@ -80,6 +77,7 @@ header a {
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  width: 15%;
 }
 .identity-details h4 {
   margin: 0 0 10px 0;

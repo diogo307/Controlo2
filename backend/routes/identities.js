@@ -9,11 +9,12 @@ const { getIdentities,
 
 const router = express.Router();
 
-// get all identities
-router.get('/', getIdentities)
 
 // get a single identity
 router.get('/:id', getIdentity)
+
+// get all identities
+router.get('/', getIdentities)
 
 // create a new identity
 router.post('/', createIdentity)

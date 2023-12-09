@@ -8,18 +8,10 @@ const findOneIdentity = async (req, res) => {
         // Use await to wait for the findOne method to complete
         const optionalIdentity = await Identity.findOne({ serialNumber: serialNumber });
         console.log(optionalIdentity)
-        if (!optionalIdentity) {
-            // If no identity is found, return a 404 response
-            return res.status(404).json({ error: 'No such identity' });
-        } else {
-            // If identity is found, return a 200 response with the identity data
-            console.log(optionalIdentity);
-            return res.status(200).json(optionalIdentity);
-        }
+        return optionalIdentity
     } catch (err) {
         // Handle any errors that occur during the process
-        console.error(err);
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return null;
     }
 };
 
@@ -35,11 +27,7 @@ const getIdentities = async (req,res) => {
 const getIdentity = async (req,res) => {
     const {id} = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: 'No such identity'})
-    }
-
-    const identity = await Identity.findById(id);
+    let identity = await Identity.findOne({serialNumber: id});
 
     if (!identity){
         return res.status(404).json({error: 'No such identity'});

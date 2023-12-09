@@ -12,9 +12,8 @@ const IdentityDetails = ({identity}) => {
         if (response.ok) {
             // Assuming your server returns some data upon successful deletion
             const json = await response.json();
-            
-            // Navigate to '/identities_dashboard'
-            navigate('/');
+
+            navigate('/', { replace: true });
 
         }
     }

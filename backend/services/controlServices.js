@@ -25,7 +25,8 @@ const getControls = async (req,res) => {
 
 // create a new Control
 const createControl = async (req,res) => {
-    const {dateTime, serialNumber } = req.body
+    const {serialNumber, dateTime} = req
+
 
     /*let emptyFields = []
     if(!serialNumber){
@@ -40,9 +41,12 @@ const createControl = async (req,res) => {
 
     // add doc to db
     try {
+        console.log('Creating control...')
         const control = await Control.create({serialNumber, dateTime})
+        console.log('Control created successfully')
         return control;
     } catch (error) {
+        console.log(error)
         return null
     }
 }

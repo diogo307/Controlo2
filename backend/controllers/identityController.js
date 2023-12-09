@@ -20,7 +20,7 @@ const getIdentities = async (req,res) => {
 
 // get a single identity
 const getIdentity = async (req,res) => {
-    return identityServices.getIdentity(req,res);
+   return await identityServices.getIdentity(req,res);
 }
 
 // create a new identity
