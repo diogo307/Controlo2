@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const identityRoutes = require('./routes/identities')
 const controlRoutes = require('./routes/controls')
-const mqtt = require ('mqtt')
+const mqtt = require('mqtt')
 
 // create express app
 const app = express ()
