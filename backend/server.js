@@ -10,7 +10,7 @@ const app = express ()
 
 //Middleware
 app.use(express.json())
-app.use((req,res,next)=>{
+app.use((req,res,next) => {
     console.log(req.path, req.method);
     next();
 })
@@ -46,7 +46,7 @@ mongoose.connect(process.env.Mongo_URI)
 .then(()=>{
     console.log('connected to database')
     // listen for requests
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT, () => {    
         console.log('Listening on port', process.env.PORT)
     })
 })
